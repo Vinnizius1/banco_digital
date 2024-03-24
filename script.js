@@ -63,10 +63,12 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 /* Início */
 const displayMovements = function (movements) {
-  movements.forEach(function (movement) {
+  movements.forEach(function (movement, i) {
+    const type = movement > 0 ? 'deposit' : 'withdrawal';
+
     const html = `
   <div class="movements__row">
-  <div class="movements__type movements__type--deposit">2 deposit</div>
+  <div class="movements__type movements__type--${type}">${i + 1}º ${type}</div>
   <div class="movements__value">${movement}€</div>
 </div>
   `;
