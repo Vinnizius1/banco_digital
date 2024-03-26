@@ -80,6 +80,43 @@ const displayMovements = function (movements) {
 };
 displayMovements(account1.movements);
 
+const createUsername = function (accs) {
+  accs.forEach(
+    acc =>
+      (acc.username = acc.owner
+        .toLowerCase()
+        .split(' ')
+        .map(name => name[0])
+        .join(''))
+  );
+};
+createUsername(accounts);
+
+const calcDisplaySummary = function (acc) {
+  const income = acc.movements
+    .filter(value => value > 0)
+    .reduce((acc, curr) => acc + curr, 0);
+  labelSumIn.textContent = `${income}€`;
+
+  const out = acc.movements
+    .filter(value => value < 0)
+    .reduce((acc, curr) => acc + curr, 0);
+  labelSumOut.textContent = `${Math.abs(out)}€`;
+
+  const interest = acc.movements
+    .filter(value => value > 0)
+    .map(deposit => (deposit * acc.interestRate) / 100)
+    // .filter((interest, i, array) => {
+    //   console.log(array);
+    //   return interest >= 1;
+    // })
+    .filter(interest => interest >= 1)
+    .reduce((deposit, curr) => deposit + curr, 0);
+  labelSumInterest.textContent = `${interest.toFixed(2)}`;
+};
+
+calcDisplaySummary(account1);
+
 // displayMovements(accounts[0].movements);
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
