@@ -114,10 +114,25 @@ const calcDisplaySummary = function (acc) {
     .reduce((deposit, curr) => deposit + curr, 0);
   labelSumInterest.textContent = `${interest.toFixed(2)}`;
 };
-
 calcDisplaySummary(account1);
 
-// displayMovements(accounts[0].movements);
+/* Event handler */
+let currentAccount;
+
+btnLogin.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  currentAccount = accounts.find(
+    acc => acc.username === inputLoginUsername.value
+  );
+
+  if (+inputLoginPin.value === currentAccount.pin) {
+    console.log(currentAccount);
+  } else {
+    console.log('erro');
+  }
+});
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
