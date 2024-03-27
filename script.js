@@ -126,8 +126,16 @@ btnLogin.addEventListener('click', function (e) {
     acc => acc.username === inputLoginUsername.value
   );
 
+  // '.pin' somente será lido SE 'currentAccount' existir!
   if (currentAccount?.pin === +inputLoginPin.value) {
-    console.log(currentAccount);
+    // Display UI and message
+    labelWelcome.textContent = `Hello, ${currentAccount.owner.split(' ')[0]}!`;
+    containerApp.style.opacity = 100;
+
+    inputLoginUsername.value = inputLoginPin.value = '';
+    inputLoginPin.blur();
+
+    // Update UI
   }
 });
 
