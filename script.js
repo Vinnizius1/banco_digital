@@ -78,7 +78,6 @@ const displayMovements = function (movements) {
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
-displayMovements(account1.movements);
 
 const createUsername = function (accs) {
   accs.forEach(
@@ -114,7 +113,11 @@ const calcDisplaySummary = function (acc) {
     .reduce((deposit, curr) => deposit + curr, 0);
   labelSumInterest.textContent = `${interest.toFixed(2)}`;
 };
-calcDisplaySummary(account1);
+
+const displayBalance = function (acc) {
+  const balance = acc.movements.reduce((sum, curr) => sum + curr, 0);
+  labelBalance.textContent = `${balance}€`;
+};
 
 /* Event handler */
 let currentAccount;
@@ -136,8 +139,15 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginPin.blur();
 
     // Update UI
+    updateUI(currentAccount);
   }
 });
+
+const updateUI = acc => {
+  calcDisplaySummary(acc);
+  displayMovements(acc.movements);
+  displayBalance(acc);
+};
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
