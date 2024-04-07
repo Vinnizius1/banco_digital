@@ -166,15 +166,18 @@ btnTransfer.addEventListener('click', function (e) {
 
   if (
     amount > 0 &&
-    // receiverAcc &&
+    receiverAcc &&
     currentAccount.balance >= amount &&
-    receiverAcc?.username !== currentAccount.username
+    receiverAcc.username !== currentAccount.username
   ) {
     currentAccount.movements.push(-amount);
     receiverAcc.movements.push(amount);
+
+    inputTransferAmount.value = inputTransferTo.value = '';
+
+    // Update UI
+    updateUI(currentAccount);
   }
-  // console.log(currentAccount);
-  // console.log(receiverAcc);
 });
 
 // currentAccount = account1;
