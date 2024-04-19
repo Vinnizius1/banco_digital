@@ -117,7 +117,6 @@ const calcDisplaySummary = function (acc) {
 const displayBalance = function (acc) {
   acc.balance = acc.movements.reduce((sum, curr) => sum + curr, 0);
   labelBalance.textContent = `${acc.balance}€`;
-
   // acc.balance = balance;
 };
 
@@ -135,6 +134,7 @@ const updateUI = function (acc) {
 /* Event handlers */
 let currentAccount;
 
+// LOGIN
 btnLogin.addEventListener('click', function (e) {
   e.preventDefault();
 
@@ -156,14 +156,19 @@ btnLogin.addEventListener('click', function (e) {
   }
 });
 
+// TRANSFERÊNCIA
 btnTransfer.addEventListener('click', function (e) {
   e.preventDefault();
 
+  // seleciona o input convertendo-o em "number"
   const amount = +inputTransferAmount.value;
+
+  // ache o recebedor dentro do array de "contas" utilizando como critério o "username" (abreviação dos nomes q criamos acima)
   const receiverAcc = accounts.find(
     acc => acc.username === inputTransferTo.value
   );
 
+  // faça a condição/validação para então fazermos a transferência do valor
   if (
     amount > 0 &&
     receiverAcc &&
@@ -175,12 +180,33 @@ btnTransfer.addEventListener('click', function (e) {
 
     inputTransferAmount.value = inputTransferTo.value = '';
 
-    // Update UI
     updateUI(currentAccount);
   }
 });
 
-// currentAccount = account1;
+// DELETA CONTA
+btnClose.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  if (
+    inputCloseUsername.value === currentAccount.username &&
+    Number(inputClosePin.value) === currentAccount.pin
+  ) {
+    const index = accounts.findIndex(
+      acc => acc.username === currentAccount.username
+    );
+
+    // Deleta a conta
+    accounts.splice(index, 1);
+
+    // Oculta a Interface do Usuário
+    containerApp.style.opacity = 0;
+  }
+
+  inputCloseUsername.value = inputClosePin.value = '';
+});
+
+// currentAccount = account2;
 // updateUI(currentAccount);
 // containerApp.style.opacity = 100;
 
