@@ -210,10 +210,14 @@ btnClose.addEventListener('click', function (e) {
 });
 
 // MÉTODO 'SORT'
+let sort = false;
+// a variável 'sort' fica fora para assim presevarmos seu valor
 btnSort.addEventListener('click', function (e) {
   e.preventDefault();
 
-  // const sort =
+  displayMovements(currentAccount.movements, !sort);
+  // aqui em cada clique alterará o valor de sort:
+  sort = !sort;
 });
 
 currentAccount = account2;
