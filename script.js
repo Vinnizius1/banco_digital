@@ -120,7 +120,7 @@ const displayMovements = function (movements, sort = false) {
     const html = `
   <div class="movements__row">
   <div class="movements__type movements__type--${type}">${i + 1}º ${type}</div>
-  <div class="movements__value">${movement}€</div>
+  <div class="movements__value">${movement.toFixed(2)}€</div>
 </div>
   `;
 
@@ -144,12 +144,12 @@ const calcDisplaySummary = function (acc) {
   const income = acc.movements
     .filter(value => value > 0)
     .reduce((acc, curr) => acc + curr, 0);
-  labelSumIn.textContent = `${income}€`;
+  labelSumIn.textContent = `${income.toFixed(2)}€`;
 
   const out = acc.movements
     .filter(value => value < 0)
     .reduce((acc, curr) => acc + curr, 0);
-  labelSumOut.textContent = `${Math.abs(out)}€`;
+  labelSumOut.textContent = `${Math.abs(out).toFixed(2)}€`;
 
   const interest = acc.movements
     .filter(value => value > 0)
@@ -237,7 +237,7 @@ btnTransfer.addEventListener('click', function (e) {
 btnLoan.addEventListener('click', function (e) {
   e.preventDefault();
 
-  const amount = +inputLoanAmount.value;
+  const amount = Math.floor(inputLoanAmount.value);
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
     // adiciona o valor
@@ -283,7 +283,7 @@ btnSort.addEventListener('click', function (e) {
   sort = !sort;
 });
 
-currentAccount = account2;
+currentAccount = account1;
 updateUI(currentAccount);
 containerApp.style.opacity = 100;
 
