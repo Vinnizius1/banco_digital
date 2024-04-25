@@ -180,8 +180,18 @@ const updateUI = function (acc) {
   displayBalance(acc);
 };
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 /* Event handlers */
 let currentAccount;
+
+const now = new Date();
+const day = now.getDate();
+const month = now.getMonth() + 1;
+const year = now.getFullYear();
+const hour = now.getHours();
+const min = now.getMinutes();
+labelDate.textContent = `${day}/${month}/${year}, ${hour}:${min}`;
 
 // LOGIN
 btnLogin.addEventListener('click', function (e) {
