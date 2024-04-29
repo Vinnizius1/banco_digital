@@ -107,7 +107,34 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+// 1000: converte de milissegundos para 1 segundo
+// 60 seg: converte para minuto
+// 60 min: converte para hora
+// 24 horas: converte para dia
+
+// Construtor do objeto new Date():
+// new Date(ano, mês, dia, hora, minuto, segundo, milissegundo);
+
+// Adicionaremos Math.abs() para não importar se 'date1' é ou não antes de 'date2'
+
+// const calcDaysPassed = (date1, date2) =>
+//   Math.abs(date2 - date1) / (1000 * 60 * 60 * 24);
+
 /* Início */
+const formatMovementDate = function (date) {
+  const calcDaysPassed = (date1, date2) =>
+    Math.abs(date2 - date1) / (1000 * 60 * 60 * 24);
+
+  const daysPassed = calcDaysPassed(new Date(), date);
+  console.log(daysPassed);
+
+  const day = `${date.getDate()}`.padStart(2, 0);
+  const month = `${date.getMonth() + 1}`.padStart(2, 0);
+  const year = date.getFullYear();
+
+  return `${day}/${month}/${year}`;
+};
+
 const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = '';
 
@@ -120,12 +147,9 @@ const displayMovements = function (acc, sort = false) {
     // cria os Tipos
     const type = movement > 0 ? 'deposit' : 'withdrawal';
 
-    // cria as Datas
+    // pega cada Data pelo seu índice e exporta para a função 'formatMovementDate(date)'
     const date = new Date(acc.movementsDates[i]);
-    const day = `${date.getDate()}`.padStart(2, 0);
-    const month = `${date.getMonth() + 1}`.padStart(2, 0);
-    const year = date.getFullYear();
-    const displayDate = `${day}/${month}/${year}`;
+    const displayDate = formatMovementDate(date);
 
     // cria cada linha de Movimento pro HTML
     const html = `
