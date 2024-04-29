@@ -126,7 +126,6 @@ const displayMovements = function (acc, sort = false) {
     const month = `${date.getMonth() + 1}`.padStart(2, 0);
     const year = date.getFullYear();
     const displayDate = `${day}/${month}/${year}`;
-    console.log(displayDate);
 
     // cria cada linha de Movimento pro HTML
     const html = `
@@ -247,10 +246,16 @@ btnTransfer.addEventListener('click', function (e) {
     currentAccount.balance >= amount &&
     receiverAcc.username !== currentAccount.username
   ) {
+    // faz a transferência
     currentAccount.movements.push(-amount);
     receiverAcc.movements.push(amount);
 
+    // limpa os campos
     inputTransferAmount.value = inputTransferTo.value = '';
+
+    // cria a nova data desta TRANSFERÊNCIA para o array de 'movementsDates'
+    currentAccount.movementsDates.push(new Date());
+    receiverAcc.movementsDates.push(new Date());
 
     updateUI(currentAccount);
   }
@@ -265,6 +270,9 @@ btnLoan.addEventListener('click', function (e) {
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
     // adiciona o valor
     currentAccount.movements.push(amount);
+
+    // cria a nova data deste EMPRÉSTIMO para o array de 'movementsDates'
+    currentAccount.movementsDates.push(new Date());
 
     // atualiza a UI
     updateUI(currentAccount);
