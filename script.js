@@ -254,8 +254,8 @@ btnTransfer.addEventListener('click', function (e) {
     inputTransferAmount.value = inputTransferTo.value = '';
 
     // cria a nova data desta TRANSFERÊNCIA para o array de 'movementsDates'
-    currentAccount.movementsDates.push(new Date());
-    receiverAcc.movementsDates.push(new Date());
+    currentAccount.movementsDates.push(new Date().toISOString());
+    receiverAcc.movementsDates.push(new Date().toISOString());
 
     updateUI(currentAccount);
   }
@@ -272,7 +272,7 @@ btnLoan.addEventListener('click', function (e) {
     currentAccount.movements.push(amount);
 
     // cria a nova data deste EMPRÉSTIMO para o array de 'movementsDates'
-    currentAccount.movementsDates.push(new Date());
+    currentAccount.movementsDates.push(new Date().toISOString());
 
     // atualiza a UI
     updateUI(currentAccount);
