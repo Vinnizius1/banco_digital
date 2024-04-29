@@ -197,14 +197,6 @@ const updateUI = function (acc) {
 /* Event handlers */
 let currentAccount;
 
-const now = new Date();
-const day = `${now.getDate()}`.padStart(2, 0);
-const month = `${now.getMonth() + 1}`.padStart(2, 0);
-const year = now.getFullYear();
-const hour = now.getHours();
-const min = now.getMinutes();
-labelDate.textContent = `${day}/${month}/${year}, ${hour}:${min}`;
-
 // LOGIN
 btnLogin.addEventListener('click', function (e) {
   e.preventDefault();
@@ -218,6 +210,15 @@ btnLogin.addEventListener('click', function (e) {
     // Display UI and message
     labelWelcome.textContent = `Hello, ${currentAccount.owner.split(' ')[0]}!`;
     containerApp.style.opacity = 100;
+
+    // cria a data e hora atual
+    const now = new Date();
+    const day = `${now.getDate()}`.padStart(2, 0);
+    const month = `${now.getMonth() + 1}`.padStart(2, 0);
+    const year = now.getFullYear();
+    const hour = `${now.getHours()}`.padStart(2, 0);
+    const min = `${now.getMinutes()}`.padStart(2, 0);
+    labelDate.textContent = `${day}/${month}/${year}, ${hour}:${min}`;
 
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
@@ -314,9 +315,9 @@ btnSort.addEventListener('click', function (e) {
   sort = !sort;
 });
 
-currentAccount = account1;
-updateUI(currentAccount);
-containerApp.style.opacity = 100;
+// currentAccount = account1;
+// updateUI(currentAccount);
+// containerApp.style.opacity = 100;
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
