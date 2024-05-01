@@ -55,7 +55,7 @@ const account1 = {
     '2024-04-29T23:36:17.929Z',
     '2024-05-01T10:51:36.790Z',
   ],
-  currency: 'EUR',
+  currency: 'R$',
   locale: 'pt-PT', // de-DE
 };
 
@@ -240,13 +240,30 @@ btnLogin.addEventListener('click', function (e) {
     containerApp.style.opacity = 100;
 
     // cria a data e hora atual
+    // const now = new Date();
+    // const day = `${now.getDate()}`.padStart(2, 0);
+    // const month = `${now.getMonth() + 1}`.padStart(2, 0);
+    // const year = now.getFullYear();
+    // const hour = `${now.getHours()}`.padStart(2, 0);
+    // const min = `${now.getMinutes()}`.padStart(2, 0);
+    // labelDate.textContent = `${day}/${month}/${year}, ${hour}:${min}`;
+
+    // Nova lógica
     const now = new Date();
-    const day = `${now.getDate()}`.padStart(2, 0);
-    const month = `${now.getMonth() + 1}`.padStart(2, 0);
-    const year = now.getFullYear();
-    const hour = `${now.getHours()}`.padStart(2, 0);
-    const min = `${now.getMinutes()}`.padStart(2, 0);
-    labelDate.textContent = `${day}/${month}/${year}, ${hour}:${min}`;
+    const options = {
+      hour: 'numeric',
+      minute: 'numeric',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+      weekday: 'long',
+    };
+    // const local = navigator.language;
+
+    labelDate.textContent = new Intl.DateTimeFormat(
+      currentAccount.locale,
+      options
+    ).format(now);
 
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
@@ -349,16 +366,18 @@ updateUI(currentAccount);
 containerApp.style.opacity = 100;
 
 /* Experimenting API */
-const now = new Date();
-const options = {
-  hour: 'numeric',
-  minute: 'numeric',
-  day: 'numeric',
-  month: 'long',
-  year: 'numeric',
-  weekday: 'long',
-};
-labelDate.textContent = new Intl.DateTimeFormat('pt-BR', options).format(now);
+// const now = new Date();
+// const options = {
+//   hour: 'numeric',
+//   minute: 'numeric',
+//   day: 'numeric',
+//   month: 'long',
+//   year: 'numeric',
+//   weekday: 'long',
+// };
+// const local = navigator.language;
+
+// labelDate.textContent = new Intl.DateTimeFormat(local, options).format(now);
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
