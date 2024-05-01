@@ -343,9 +343,22 @@ btnSort.addEventListener('click', function (e) {
   sort = !sort;
 });
 
-// currentAccount = account1;
-// updateUI(currentAccount);
-// containerApp.style.opacity = 100;
+/* FAKE ALWAYS LOGGED IN */
+currentAccount = account1;
+updateUI(currentAccount);
+containerApp.style.opacity = 100;
+
+/* Experimenting API */
+const now = new Date();
+const options = {
+  hour: 'numeric',
+  minute: 'numeric',
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+  weekday: 'long',
+};
+labelDate.textContent = new Intl.DateTimeFormat('pt-BR', options).format(now);
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
