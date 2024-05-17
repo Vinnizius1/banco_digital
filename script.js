@@ -24,26 +24,22 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-// 1000: converte de milissegundos para 1 segundo
-// 60 seg: converte para minuto
-// 60 min: converte para hora
-// 24 horas: converte para dia
-
 // Construtor do objeto new Date():
 // new Date(ano, mês, dia, hora, minuto, segundo, milissegundo);
-
-// Adicionaremos Math.abs() para não importar se 'date1' é ou não antes de 'date2'
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /* Início */
 const formatMovementDate = function (date, locale) {
   const calcDaysPassed = (date1, date2) =>
+    // Adicionaremos Math.abs() para não importar se 'date1' é ou não antes de 'date2'
     Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
+  // 1000: converte de milissegundos para 1 segundo
+  // 60 seg: converte para minuto
+  // 60 min: converte para hora
+  // 24 horas: converte para dia
 
   const daysPassed = calcDaysPassed(new Date(), date);
 
-  // nova lógica para deixar as datas RECENTES mais elegantes
+  // Lógica para deixar as datas RECENTES mais elegantes
   if (daysPassed === 0) return 'Today';
   if (daysPassed === 1) return 'Yesterday';
   if (daysPassed <= 7) return `${daysPassed} days ago`;
@@ -53,7 +49,6 @@ const formatMovementDate = function (date, locale) {
     // const year = date.getFullYear();
     // return `${day}/${month}/${year}`;
     return new Intl.DateTimeFormat(locale).format(date);
-    // Obs: acima não precisamos de nenhuma "option" porque precisamos apenas da 'data' de cada movimento.
   }
 };
 
@@ -302,15 +297,3 @@ btnSort.addEventListener('click', function (e) {
 // const local = navigator.language;
 
 // labelDate.textContent = new Intl.DateTimeFormat(local, options).format(now);
-
-/////////////////////////////////////////////////
-/////////////////////////////////////////////////
-// LECTURES
-
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-/////////////////////////////////////////////////
