@@ -55,8 +55,8 @@ const account1 = {
     '2024-04-29T23:36:17.929Z',
     '2024-05-01T10:51:36.790Z',
   ],
-  currency: 'R$',
-  locale: 'pt-PT', // de-DE
+  currency: 'BRL',
+  locale: 'pt-BR', // de-DE
 };
 
 const account2 = {
@@ -156,12 +156,18 @@ const displayMovements = function (acc, sort = false) {
     const date = new Date(acc.movementsDates[i]);
     const displayDate = formatMovementDate(date, acc.locale);
 
+    // formatação dos números de acordo com a moeda (currency) JÁ INSERIDA na conta de cada usuário
+    const formattedMov = new Intl.NumberFormat(acc.locale, {
+      style: 'currency',
+      currency: 'BRL',
+    }).format(movement);
+
     // cria cada linha de Movimento pro HTML
     const html = `
   <div class="movements__row">
   <div class="movements__type movements__type--${type}">${i + 1}º ${type}</div>
   <div class="movements__date">${displayDate}</div>
-  <div class="movements__value">${movement.toFixed(2)}€</div>
+  <div class="movements__value">${formattedMov}</div>
 </div>
   `;
 
@@ -362,9 +368,9 @@ btnSort.addEventListener('click', function (e) {
 });
 
 /* FAKE ALWAYS LOGGED IN */
-currentAccount = account1;
-updateUI(currentAccount);
-containerApp.style.opacity = 100;
+// currentAccount = account1;
+// updateUI(currentAccount);
+// containerApp.style.opacity = 100;
 
 /* Experimenting API */
 // const now = new Date();
