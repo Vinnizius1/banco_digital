@@ -253,16 +253,19 @@ btnLoan.addEventListener('click', function (e) {
   const amount = Math.floor(inputLoanAmount.value);
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
-    // adiciona o valor
-    currentAccount.movements.push(amount);
+    // "setTimeout(){}"" simplesmente agenda uma função para ocorrer em um determinado tempo. Esta função é executada apenas 1 vez.
+    setTimeout(function () {
+      // adiciona o valor
+      currentAccount.movements.push(amount);
 
-    // cria a nova data deste EMPRÉSTIMO para o array de 'movementsDates'
-    currentAccount.movementsDates.push(new Date().toISOString());
+      // cria a nova data deste EMPRÉSTIMO para o array de 'movementsDates'
+      currentAccount.movementsDates.push(new Date().toISOString());
 
-    // atualiza a UI
-    updateUI(currentAccount);
+      // atualiza a UI
+      updateUI(currentAccount);
 
-    inputLoanAmount.value = '';
+      inputLoanAmount.value = '';
+    }, 2500);
   }
 });
 
