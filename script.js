@@ -26,9 +26,13 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 const startLogOutTimer = function () {
   // Set time to 5 minutes
+  let time = 100;
+
   // Call the time every second
-  // In each call, print the remaining time to UI (user interface)
-  // When 0 seconds, stop timer and log out user
+  setInterval(function () {
+    // In each call, print the remaining time to UI (user interface)
+    // When 0 seconds, stop timer and log out user
+  }, 1000);
 };
 
 ///////////////////
