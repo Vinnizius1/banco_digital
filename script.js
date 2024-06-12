@@ -24,6 +24,13 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+const startLogOutTimer = function () {
+  // Set time to 5 minutes
+  // Call the time every second
+  // In each call, print the remaining time to UI (user interface)
+  // When 0 seconds, stop timer and log out user
+};
+
 ///////////////////
 /* Início */
 ///////////////////
