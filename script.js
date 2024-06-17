@@ -29,9 +29,24 @@ const startLogOutTimer = function () {
   let time = 100;
 
   // Call the time every second
-  setInterval(function () {
+  const timer = setInterval(function () {
+    const minutes = String(Math.trunc(time / 60)).padStart(2, 0);
+    const seconds = String(time % 60).padStart(2, 0);
+
     // In each call, print the remaining time to UI (user interface)
+    labelTimer.textContent = `${minutes}:${seconds}`;
+
+    // Decrease 1 second
+    time--;
+
     // When 0 seconds, stop timer and log out user
+    if (time === 0) {
+      // Para funcionar, precisamos dar um nome para este timer, no caso será "timer"
+      clearInterval(timer);
+
+      labelWelcome.textContent = `Log in to get started`;
+      containerApp.style.opacity = 0;
+    }
   }, 1000);
 };
 
@@ -217,6 +232,9 @@ btnLogin.addEventListener('click', function (e) {
 
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
+
+    startLogOutTimer();
+    // clearInterval(startLogOutTimer);
 
     // Update UI
     updateUI(currentAccount);
