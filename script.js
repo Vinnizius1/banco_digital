@@ -33,9 +33,6 @@ const startLogOutTimer = function () {
     // In each call, print the remaining time to UI (user interface)
     labelTimer.textContent = `${minutes}:${seconds}`;
 
-    // Decrease 1 second
-    time--;
-
     // When 0 seconds, stop timer and log out user
     if (time === 0) {
       // Para funcionar, precisamos dar um nome para este timer, no caso será "timer"
@@ -44,14 +41,20 @@ const startLogOutTimer = function () {
       labelWelcome.textContent = `Log in to get started`;
       containerApp.style.opacity = 0;
     }
+
+    // Decrease 1 second
+    time--;
   };
 
   // Set time to 5 minutes
-  let time = 100;
+  let time = 10;
 
   // Call the time every second
   tick();
   const timer = setInterval(tick, 1000);
+
+  // Retornaremos este timer para corrigirmos o problema de ter mais de 1 timer rodando quando se faz login em outras contas
+  return timer;
 };
 
 ///////////////////
@@ -192,7 +195,7 @@ const updateUI = function (acc) {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /* Event handlers */
-let currentAccount;
+let currentAccount, timer;
 
 // LOGIN
 btnLogin.addEventListener('click', function (e) {
@@ -237,7 +240,11 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
 
-    startLogOutTimer();
+    // Timer
+    if (timer) {
+      clearInterval(timer);
+    }
+    timer = startLogOutTimer();
     // clearInterval(startLogOutTimer);
 
     // Update UI
