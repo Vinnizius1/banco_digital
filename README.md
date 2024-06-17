@@ -12,7 +12,7 @@ Coloque aqui as instruções e quais são os objetivos desse projeto, funcionali
 
 ### ⚙️ Link para acessar o projeto
 
-Coloque aqui 
+https://yourdigitalbank.netlify.app
 
 ```
 Pode inserir exemplos.
@@ -32,7 +32,7 @@ Ou pode separar por stacks:
 
 **Front-end:**
 * [React JS](https://react.dev/)
-* [TailwindCSS](https://tailwindcss.com/)
+* 
 
 ## 👷 Autores
 
@@ -48,5 +48,5 @@ Esse projeto está sob a licença (nome da licença) - acesse os detalhes [LICEN
 ## 💡 Expressões de gratidão
 
 * Um agradecimento publicamente.
-* Para suporte, mande um email para nome@teste.com.
-* Link para o seu linkedin [Meu linkedin](https://url_do_link)
+* Para suporte, mande um email para vmm_7@hotmail.com
+* [Meu linkedin](https://www.linkedin.com/in/vinmm/)
