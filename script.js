@@ -25,6 +25,9 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
 const startLogOutTimer = function () {
+  // Set time to 5 minutes
+  let time = 300;
+
   // "tick" acontecerá no exato momento do login, e não mais após 1 segundo quando essa função toda estava dentro do setInterval() da constante "timer"
   const tick = function () {
     const minutes = String(Math.trunc(time / 60)).padStart(2, 0);
@@ -45,9 +48,6 @@ const startLogOutTimer = function () {
     // Decrease 1 second
     time--;
   };
-
-  // Set time to 5 minutes
-  let time = 10;
 
   // Call the time every second
   tick();
@@ -334,6 +334,7 @@ btnClose.addEventListener('click', function (e) {
 
     // Oculta a Interface do Usuário
     containerApp.style.opacity = 0;
+    labelWelcome.textContent = `Log in to get started`;
   }
 
   inputCloseUsername.value = inputClosePin.value = '';
